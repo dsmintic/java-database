@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Management System</title>
+</head>
+<body>
+<h1>Project Management System</h1>
+<h2>Save Project</h2>
+<form action="#" th:action="@{/projects/saveProject}" th:object="${project}" method="post">
+    <input type="text" th:field="*{title}" placeholder="Insert project title">
+    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+
+    <input type="hidden" th:field="*{id}">
+
+    <button type="submit">Save Project</button>
+</form>
+<hr>
+<a th:href="@{/projects}" class="ahrefbutton">Back to Projects List</a>
+<a th:href="@{/employees}" class="ahrefbutton">Back to Employees List</a>
+</body>
+<hr>
+<p>© 2022 Mušketiri</p>
+</html>

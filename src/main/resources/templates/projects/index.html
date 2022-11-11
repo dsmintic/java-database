@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+    <title>Project Management System</title>
+</head>
+<body>
+<h1>Project Management System</h1>
+<h2>Project List</h2>
+<hr>
+<p th:if="${listOfAllProjects.size() < 1}">
+  <span class="warning">There are no projects listed.</span>
+</p>
+
+<table th:unless = "${listOfAllProjects.size() < 1}">
+  <thead>
+  <th>Project name</th>
+  <th>Members of project</th>
+  </thead>
+  <tbody>
+  <tr th:each="project : ${listOfAllProjects}">
+    <td th:text="${project.title}"></td>
+    <td>
+     <p th:each="employee : ${project.getEmployees()}">
+     <span th:text="${employee}"></span>
+     </p>
+    </td>
+    <td>
+      <a th:href="@{/showProjectForUpdate/{id}(id=${project.id})}">UPDATE PROJECT</a>
+    </td>
+  </tbody>
+</table>
+<hr>
+    <a th:href="@{/projects/showNewProjectForm}" class="ahrefbutton">ADD NEW PROJECT</a>
+<hr>
+    <a th:href="@{/employees}" class="ahrefbutton">EMPLOYEES LIST</a>
+</body>
+<hr>
+<p>© 2022 Mušketiri</p>
+</html>
